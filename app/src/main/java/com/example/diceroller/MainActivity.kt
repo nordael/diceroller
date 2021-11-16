@@ -3,6 +3,9 @@ package com.example.diceroller
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
+import android.widget.TextView
+import android.widget.Toast
+import kotlin.random.Random
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -13,7 +16,13 @@ class MainActivity : AppCompatActivity() {
         val rollButton: Button = findViewById<Button>(R.id.roll_button)
         rollButton.text = "Let's roll it!"
         rollButton.setOnClickListener{
-            rollButton.text = "Wow, you clicked it!"
+            rollDice();
         }
+    }
+
+    private fun rollDice() {
+        val randomInt = Random.nextInt(6) + 1
+        val resultText: TextView = findViewById<TextView>(R.id.result_text)
+        resultText.text = "Dice Rolled: " + randomInt.toString()
     }
 }
