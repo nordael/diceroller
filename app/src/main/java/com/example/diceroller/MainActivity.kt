@@ -9,6 +9,9 @@ import android.widget.Toast
 import kotlin.random.Random
 
 class MainActivity : AppCompatActivity() {
+
+    lateinit var diceImage: ImageView;
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         //the line below shows the content of the layout content described in activity_mani.xml
@@ -17,8 +20,10 @@ class MainActivity : AppCompatActivity() {
         val rollButton: Button = findViewById<Button>(R.id.roll_button)
         rollButton.text = "Let's roll it!"
         rollButton.setOnClickListener{
-            rollDice();
+            rollDice()
         }
+
+        diceImage = findViewById<ImageView>(R.id.dice_image)
     }
 
     private fun rollDice() {
@@ -31,7 +36,6 @@ class MainActivity : AppCompatActivity() {
             5 -> R.drawable.dice_5
             else -> R.drawable.dice_6
         }
-        val diceImage: ImageView = findViewById(R.id.dice_image)
         diceImage.setImageResource(drawableResource)
     }
 }
