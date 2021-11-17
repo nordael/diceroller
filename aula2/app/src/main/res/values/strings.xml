@@ -1,4 +1,12 @@
 <resources>
     <string name="app_name">Dice Roller</string>
     <string name="name">First textview</string>
+    <string name="bio">
+        "Hi my is Julio!
+        \n\nI'm new internship at Blu Pagamentos.
+        \n\n Nowadays I'm taking a course in order to integrate
+        \n\n along with my dev-mobile team ASAP.
+        \n\n I also not losing the opportunity to learn a lot!
+    </string>
+    <string name="yellow_star">Yellow star</string>
 </resources>
