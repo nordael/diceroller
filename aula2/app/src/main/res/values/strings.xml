@@ -10,4 +10,7 @@
     </string>
     <string name="yellow_star">Yellow star</string>
     <string name="what_is_your_nickname">What is your nick name?</string>
+    <string name="button_label">Click on me!</string>
+    <string name="secret_text">secret</string>
+
 </resources>
