@@ -8,18 +8,20 @@ import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
+import androidx.databinding.DataBindingUtil
+import com.example.android.aboutme.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
-    lateinit  var hiddenName : TextView;
+    private lateinit var binding: ActivityMainBinding
+    private val hid : MyName = MyName("Tarik" )
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
+        binding.myText = hid
 
-        val  clickMe : Button = findViewById(R.id.done_button)
-        hiddenName = findViewById(R.id.textHidden)
-
-        clickMe.setOnClickListener {
+        //val  clickMe : Button = findViewById(R.id.done_button)
+        binding.doneButton.setOnClickListener {
             showSecret()
         }
 
@@ -27,20 +29,22 @@ class MainActivity : AppCompatActivity() {
 
     private fun showSecret(){
 
-        var inputNickname : EditText = findViewById(R.id.nickname_edit)
         var nickname = "Tarik"
 
-        if ( inputNickname.text.toString() == nickname){
-            hiddenName.text = "Wowww"
+        binding.invalidateAll()
+        if (  binding.nicknameEdit.text.toString() == nickname){
+            binding.myText?.hidden = "Wowww"
+            //binding.textHidden.text = "Wowww"
         }else{
-            hiddenName.text = "try again!"
+            binding.myText?.hidden = "try again!"
+            //binding.textHidden.text = "try again!"
         }
 
         //view.visibility = View.VISIBLE
-        hiddenName.visibility = View.VISIBLE
+        binding.textHidden.visibility = View.VISIBLE
 
         Handler(Looper.getMainLooper()).postDelayed({
-            hiddenName.visibility = View.GONE
+            binding.textHidden.visibility = View.GONE
         }, 2000)
 
 
