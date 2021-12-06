@@ -1,15 +1,20 @@
 package com.example.android.guesstheword.screens.game
 
 import android.util.Log
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
 class GameViewModel : ViewModel() {
     // The current word
     private var word = MutableLiveData<String>()
+    val ldWord :LiveData<String>
+        get() = word
 
     // The current score
     private var score = MutableLiveData<Int>()
+    val ldScore : LiveData<Int>
+        get() = score
 
     // The list of words - the front of the list is the next word to guess
     private lateinit var wordList: MutableList<String>
@@ -78,10 +83,10 @@ class GameViewModel : ViewModel() {
         }
     }
 
-    fun getWord() : MutableLiveData<String> {
-        return word
+    fun getWord() : LiveData<String> {
+        return ldWord
     }
-    fun getScore() : MutableLiveData<Int> {
-        return score
+    fun getScore() : LiveData<Int> {
+        return ldScore
     }
 }
