@@ -65,7 +65,7 @@ class GameFragment : Fragment() {
             binding.scoreText.text = viewModel.getScore().value.toString()
         })
 
-        viewModel.getWord().observe(this, Observer {  newScore ->
+        viewModel.getWord().observe(this, Observer {  newWord ->
             binding.wordText.text = viewModel.getWord().value.toString()
         })
 
