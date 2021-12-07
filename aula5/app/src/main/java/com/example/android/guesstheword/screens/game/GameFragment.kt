@@ -17,6 +17,7 @@
 package com.example.android.guesstheword.screens.game
 
 import android.os.Bundle
+import android.text.format.DateUtils
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -67,7 +68,11 @@ class GameFragment : Fragment() {
         })
 
         viewModel.getWord().observe(this, Observer {  newWord ->
-            binding.wordText.text = viewModel.getWord().value.toString()
+            binding.wordText.text = viewModel.getWord().value
+        })
+
+        viewModel.getTimeElapsed().observe( this, Observer { timeTick ->
+            binding.timerText.text = DateUtils.formatElapsedTime( timeTick )
         })
 
         viewModel.getEventGameFinish().observe( this, Observer{ hasFinished ->

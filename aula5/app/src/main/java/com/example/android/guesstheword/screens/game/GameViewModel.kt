@@ -1,11 +1,31 @@
 package com.example.android.guesstheword.screens.game
 
+import android.os.CountDownTimer
+import android.text.format.DateUtils
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import java.util.concurrent.CountDownLatch
 
 class GameViewModel : ViewModel() {
+
+    companion object {
+        // These represent different important times
+        // This is when the game is over
+        const val DONE = 0L
+        // This is the number of milliseconds in a second
+        const val ONE_SECOND = 1000L
+        // This is the total time of the game
+        const val COUNTDOWN_TIME = 60000L
+    }
+
+    private val timer : CountDownTimer
+
+    private val currentTime = MutableLiveData<Long>()
+    val ldCurrentTime : LiveData<Long>
+        get() = currentTime
+
     // The current word
     private var word = MutableLiveData<String>()
     val ldWord :LiveData<String>
@@ -30,11 +50,24 @@ class GameViewModel : ViewModel() {
         eventGameFinish.value = false
         resetList()
         nextWord()
+
+        timer = object : CountDownTimer(COUNTDOWN_TIME, ONE_SECOND ){
+            override fun onTick(p0: Long) {
+                currentTime.value = p0/ONE_SECOND
+            }
+
+            override fun onFinish() {
+                eventGameFinish.value = true
+            }
+        }
+
+        timer.start()
         Log.i("GameViewModel", "GameViewModel created")
     }
 
     override fun onCleared() {
         super.onCleared()
+        timer.cancel()
         Log.i( "GameViewModel", "GameViewModel destroyed")
     }
 
@@ -83,10 +116,10 @@ class GameViewModel : ViewModel() {
     private fun nextWord() {
         //Select and remove a word from the list
         if (wordList.isEmpty()) {
-            eventGameFinish.value = true
-        } else {
-            word.value = wordList.removeAt(0)
+            resetList()
         }
+        word.value = wordList.removeAt(0)
+
     }
 
     fun getWord() : LiveData<String> {
@@ -102,5 +135,9 @@ class GameViewModel : ViewModel() {
 
     fun setEventGameFinish( hasFinished : Boolean ){
         eventGameFinish.value = hasFinished
+    }
+
+    fun getTimeElapsed() : LiveData<Long>{
+        return ldCurrentTime
     }
 }
