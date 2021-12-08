@@ -53,15 +53,16 @@ class GameFragment : Fragment() {
 
 
         viewModel = ViewModelProvider(this). get(GameViewModel::class.java)
-        Log.i("GameFragment", "Called ViewModelProvider.of")
 
+        binding.gameViewModel = viewModel
 
-        binding.correctButton.setOnClickListener {
-            viewModel.onCorrect()
-        }
-        binding.skipButton.setOnClickListener {
-            viewModel.onSkip()
-        }
+//        Removed beacause it was set using data binding on game_fragment.xml
+//        binding.correctButton.setOnClickListener {
+//            viewModel.onCorrect()
+//        }
+//        binding.skipButton.setOnClickListener {
+//            viewModel.onSkip()
+//        }
 
         viewModel.getScore().observe(this, Observer {  newScore ->
             binding.scoreText.text = viewModel.getScore().value.toString()
