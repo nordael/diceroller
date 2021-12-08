@@ -24,7 +24,6 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.android.guesstheword.R
@@ -65,12 +64,12 @@ class ScoreFragment : Fragment() {
         viewModel.getEventPlayAgain().observe( this, Observer { playAgain ->
             if( playAgain ){
                 findNavController().navigate(ScoreFragmentDirections.actionRestart())
-                viewModel.setEventPLayAgain(false)
+                viewModel.setEventPlayAgain(false)
             }
         })
 
         binding.playAgainButton.setOnClickListener {
-            viewModel.setEventPLayAgain(true)
+            viewModel.setEventPlayAgain(true)
         }
 
         return binding.root

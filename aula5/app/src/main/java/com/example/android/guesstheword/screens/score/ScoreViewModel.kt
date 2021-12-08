@@ -20,7 +20,7 @@ class ScoreViewModel (finalScore: Int ): ViewModel() {
         Log.i("ScoreViewModel", "final score $finalScore")
     }
 
-    fun setEventPLayAgain( bool : Boolean ){
+    fun setEventPlayAgain(bool : Boolean ){
         eventPlayAgain.value = bool
     }
 
