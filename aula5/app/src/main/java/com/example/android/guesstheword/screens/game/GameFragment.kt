@@ -64,19 +64,19 @@ class GameFragment : Fragment() {
 //            viewModel.onSkip()
 //        }
 
-        viewModel.getScore().observe(this, Observer {  newScore ->
+        viewModel.getScore().observe(viewLifecycleOwner, Observer {  newScore ->
             binding.scoreText.text = viewModel.getScore().value.toString()
         })
 
-        viewModel.getWord().observe(this, Observer {  newWord ->
+        viewModel.getWord().observe(viewLifecycleOwner, Observer {  newWord ->
             binding.wordText.text = viewModel.getWord().value
         })
 
-        viewModel.getTimeElapsed().observe( this, Observer { timeTick ->
+        viewModel.getTimeElapsed().observe( viewLifecycleOwner, Observer { timeTick ->
             binding.timerText.text = DateUtils.formatElapsedTime( timeTick )
         })
 
-        viewModel.getEventGameFinish().observe( this, Observer{ hasFinished ->
+        viewModel.getEventGameFinish().observe( viewLifecycleOwner, Observer{ hasFinished ->
             if( hasFinished ){
                 gameFinished()
                 viewModel.setEventGameFinish( false )
