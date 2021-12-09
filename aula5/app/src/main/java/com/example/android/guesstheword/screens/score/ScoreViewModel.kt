@@ -24,9 +24,9 @@ class ScoreViewModel (finalScore: Int ): ViewModel() {
         eventPlayAgain.value = bool
     }
 
-    fun getScore() : LiveData<Int> {
-        return ldScore
-    }
+//    fun getScore() : LiveData<Int> {
+//        return ldScore
+//    }
 
     fun getEventPlayAgain() : LiveData<Boolean>{
         return ldEventPlayAgain
