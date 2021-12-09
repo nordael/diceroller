@@ -5,6 +5,7 @@ import android.text.format.DateUtils
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
 import java.util.concurrent.CountDownLatch
 
@@ -25,6 +26,10 @@ class GameViewModel : ViewModel() {
     private val currentTime = MutableLiveData<Long>()
     val ldCurrentTime : LiveData<Long>
         get() = currentTime
+
+    val currentTimeString = Transformations.map(currentTime,{ time ->
+        DateUtils.formatElapsedTime( time )
+    })
 
     // The current word
     private var word = MutableLiveData<String>()
@@ -100,6 +105,7 @@ class GameViewModel : ViewModel() {
         )
         wordList.shuffle()
     }
+
     fun onSkip() {
         score.value = (score.value)?.minus(1)
         nextWord()
@@ -122,9 +128,10 @@ class GameViewModel : ViewModel() {
 
     }
 
-    fun getWord() : LiveData<String> {
-        return ldWord
-    }
+//    fun getWord() : LiveData<String> {
+//        return ldWord
+//    }
+
     fun getScore() : LiveData<Int> {
         return ldScore
     }

@@ -55,6 +55,7 @@ class GameFragment : Fragment() {
         viewModel = ViewModelProvider(this). get(GameViewModel::class.java)
 
         binding.gameViewModel = viewModel
+        binding.setLifecycleOwner(this)
 
 //        Removed beacause it was set using data binding on game_fragment.xml
 //        binding.correctButton.setOnClickListener {
@@ -64,17 +65,17 @@ class GameFragment : Fragment() {
 //            viewModel.onSkip()
 //        }
 
-        viewModel.getScore().observe(viewLifecycleOwner, Observer {  newScore ->
-            binding.scoreText.text = viewModel.getScore().value.toString()
-        })
+//        viewModel.getScore().observe(viewLifecycleOwner, Observer {  newScore ->
+//            binding.scoreText.text = viewModel.getScore().value.toString()
+//        })
+//
+//        viewModel.getWord().observe(viewLifecycleOwner, Observer {  newWord ->
+//            binding.wordText.text = viewModel.getWord().value
+//        })
 
-        viewModel.getWord().observe(viewLifecycleOwner, Observer {  newWord ->
-            binding.wordText.text = viewModel.getWord().value
-        })
-
-        viewModel.getTimeElapsed().observe( viewLifecycleOwner, Observer { timeTick ->
-            binding.timerText.text = DateUtils.formatElapsedTime( timeTick )
-        })
+//        viewModel.getTimeElapsed().observe( viewLifecycleOwner, Observer { timeTick ->
+//            binding.timerText.text = DateUtils.formatElapsedTime( timeTick )
+//        })
 
         viewModel.getEventGameFinish().observe( viewLifecycleOwner, Observer{ hasFinished ->
             if( hasFinished ){
