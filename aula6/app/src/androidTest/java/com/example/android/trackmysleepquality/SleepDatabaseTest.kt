@@ -35,6 +35,8 @@ import java.io.IOException
  * adding the UI.
  */
 
+//In order to execute this test class, is necessary to inform in the gradle file, section default config,
+//where the tests will be executed "androidx.test.runner.AndroidJUnitRunner"
 @RunWith(AndroidJUnit4::class)
 class SleepDatabaseTest {
 
@@ -61,10 +63,33 @@ class SleepDatabaseTest {
 
     @Test
     @Throws(Exception::class)
-    fun insertAndGetNight() {
+    fun insertNightTest() {
+        val night = SleepNight()
+        val night2 = SleepNight()
+        sleepDao.insert(night)
+        val id = sleepDao.insert(night2)
+        assertEquals( id, 2 )
+    }
+
+    @Test
+    @Throws(Exception::class)
+    fun getNightTest(){
         val night = SleepNight()
         sleepDao.insert(night)
         val tonight = sleepDao.getTonight()
-        assertEquals(tonight?.sleepQuality, -1)
+        assertEquals(tonight?.nightId, 1)
+    }
+
+    @Test
+    @Throws(Exception::class)
+    fun updateNightTest() {
+        var night = SleepNight()
+        sleepDao.insert(night)
+        val endTime = System.currentTimeMillis()*2
+        night = sleepDao.getTonight()!!
+        night.endTimeMilli =  endTime
+        sleepDao.update(night)
+        val tonight = sleepDao.getTonight()
+        assertEquals(endTime, tonight?.endTimeMilli )
     }
 }
