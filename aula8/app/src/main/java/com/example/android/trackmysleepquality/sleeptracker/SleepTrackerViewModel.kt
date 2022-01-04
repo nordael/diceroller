@@ -131,9 +131,9 @@ class SleepTrackerViewModel(
     fun doneNavigating() {
         _navigateToSleepQuality.value = null
     }
-
     private val _navigateToSleepDataQuality = MutableLiveData<Long>()
-    val navigateToSleepDataQuality
+
+    val navigateToSleepDataQuality : LiveData<Long>
         get() = _navigateToSleepDataQuality
 
     fun onSleepNightClicked(id: Long) {
@@ -250,6 +250,5 @@ class SleepTrackerViewModel(
     override fun onCleared() {
         super.onCleared()
         viewModelJob.cancel()
-    }
-     */
+    }*/
 }
