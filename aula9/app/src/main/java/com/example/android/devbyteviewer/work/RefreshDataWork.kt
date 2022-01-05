@@ -40,4 +40,8 @@ class RefreshDataWorker(appContext: Context, params: WorkerParameters):
             }
     }
 
+    companion object {
+        const val WORK_NAME = "RefreshDataWorker"
+    }
+
 }
