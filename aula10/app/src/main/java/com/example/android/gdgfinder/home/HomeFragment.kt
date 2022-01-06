@@ -24,12 +24,11 @@ class HomeFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val binding = HomeFragmentBinding.inflate(inflater)
         val view = inflater.inflate(R.layout.home_fragment, container, false)
-        viewModel = ViewModelProvider(this).get(HomeViewModel::class.java)
+        val binding = HomeFragmentBinding.inflate(inflater)
+
         viewModel = ViewModelProvider(this).get(HomeViewModel::class.java)
         binding.viewModel = viewModel
-
         viewModel.navigateToSearch.observe(viewLifecycleOwner,
             Observer<Boolean> { shouldNavigate ->
                 if (shouldNavigate == true) {
@@ -39,7 +38,6 @@ class HomeFragment : Fragment() {
                 }
             })
 
-
-        return view
+        return binding.root
     }
 }
