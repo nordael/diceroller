@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
         <variable
-                name="viewModel"
-                type="com.example.android.gdgfinder.add.AddGdgViewModel"/>
+            name="viewModel"
+            type="com.example.android.gdgfinder.add.AddGdgViewModel"/>
     </data>
     <ScrollView android:layout_height="match_parent"
-                android:layout_width="match_parent">
+        android:layout_width="match_parent">
         <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                tools:context=".add.AddGdgFragment">
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:context=".add.AddGdgFragment">
 
             <TextView
                 android:id="@+id/textViewIntro"
@@ -119,40 +119,39 @@
 
             <!--wrap in a layout to group-->
             <LinearLayout
-            android:id="@+id/contentGroup"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:focusable="true"
-            app:layout_constraintTop_toBottomOf="@id/EditTextRegion"
-            android:orientation="vertical"
-            app:layout_constraintStart_toStartOf="@+id/EditTextRegion"
-            app:layout_constraintEnd_toEndOf="@+id/EditTextRegion"
-            android:layout_marginTop="16dp"
-            app:layout_constraintBottom_toTopOf="@+id/button"
-            android:layout_marginBottom="8dp">
-
-            <TextView
-                android:id="@+id/labelTextWhy"
-                android:text="@string/motivation"
+                android:id="@+id/contentGroup"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:contentDescription="@string/motivation"
-                app:layout_constraintTop_toBottomOf="@+id/EditTextRegion"
-                app:layout_constraintBottom_toTopOf="@+id/EditTextWhy"
-                app:layout_constraintStart_toStartOf="parent"/>
+                android:focusable="true"
+                app:layout_constraintTop_toBottomOf="@id/EditTextRegion"
+                android:orientation="vertical"
+                app:layout_constraintStart_toStartOf="@+id/EditTextRegion"
+                app:layout_constraintEnd_toEndOf="@+id/EditTextRegion"
+                android:layout_marginTop="16dp"
+                app:layout_constraintBottom_toTopOf="@+id/button"
+                android:layout_marginBottom="8dp">
 
-            <EditText
-                android:id="@+id/EditTextWhy"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="textMultiLine"
-                android:ems="10"
-                android:hint="@string/enter_motivation"
-                app:layout_constraintTop_toBottomOf="@+id/EditTextRegion"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintBottom_toTopOf="@+id/button"/>
+                <TextView
+                    android:id="@+id/labelTextWhy"
+                    android:text="@string/motivation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:contentDescription="@string/motivation"
+                    app:layout_constraintTop_toBottomOf="@+id/EditTextRegion"
+                    app:layout_constraintBottom_toTopOf="@+id/EditTextWhy"
+                    app:layout_constraintStart_toStartOf="parent"/>
 
+                <EditText
+                    android:id="@+id/EditTextWhy"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textMultiLine"
+                    android:hint="@string/enter_motivation"
+                    android:ems="10"
+                    app:layout_constraintTop_toBottomOf="@+id/EditTextRegion"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintBottom_toTopOf="@+id/button"/>
 
             </LinearLayout>
 
@@ -161,11 +160,9 @@
                 android:text="@string/submit"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:accessibilityLiveRegion="polite"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/contentGroup"
-                android:contentDescription="@string/submit_button_description"
                 android:layout_marginBottom="12dp"
                 android:layout_marginEnd="40dp"
                 android:onClick="@{() -> viewModel.onSubmitApplication()}"/>
