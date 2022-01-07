@@ -28,6 +28,10 @@ class AddGdgFragment : Fragment() {
         binding.viewModel = viewModel
 
         viewModel.showSnackBarEvent.observe(this, Observer {
+            viewModel.doneShowingSnackbar()
+
+            binding.button.contentDescription=getString(R.string.submitted)
+            binding.button.text=getString(R.string.done)
             if (it == true) { // Observed state is true.
                 Snackbar.make(
                     activity!!.findViewById(android.R.id.content),
